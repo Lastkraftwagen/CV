@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volodymyr Yevdokymov — Senior Software Developer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #0f0f0f;
+      --ink-soft: #3a3a3a;
+      --accent-pale: #f9ede8;
+      --bg-card: #ffffff;
+      --tag-bg: #f0ede8;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        box-shadow: none;
+      }
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #faf8f5;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1000px;
+      /** поправити потім */
+      margin: 48px auto;
+      background: #ffffff;
+      box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 32px;
+      padding: 52px 56px 40px;
+      border-bottom: 1px solid #d4cfc9;
+      position: relative;
+    }
+
+    .header-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid #d4cfc9;
+      align-self: center;
+      flex-shrink: 0;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #c8401a;
+    }
+
+    .header-left h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .header-left .title {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c8401a;
+      margin-top: 6px;
+    }
+
+    .header-left .summary {
+      margin-top: 14px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      max-width: 460px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+      padding-top: 6px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .contact-item .icon {
+      width: 16px;
+      height: 16px;
+      fill: #c8401a;
+      flex-shrink: 0;
+    }
+
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+    }
+
+    .main {
+      padding: 40px 48px 48px 56px;
+      border-right: 1px solid #d4cfc9;
+    }
+
+    .sidebar {
+      padding: 40px 32px 48px;
+      background: #faf8f5;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c8401a;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #d4cfc9;
+    }
+
+    section {
+      margin-bottom: 36px;
+    }
+
+    .job {
+      margin-bottom: 28px;
+    }
+
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .job-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .job-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #888;
+      white-space: nowrap;
+    }
+
+    .job-company {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #c8401a;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .job-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .job-bullets li {
+      padding-left: 16px;
+      position: relative;
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .job-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #d4cfc9;
+      font-size: 11px;
+      top: 1px;
+    }
+
+    .job-tech {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 6px;
+      align-items: start;
+    }
+
+    .job-tech-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      padding-top: 3px;
+      white-space: wrap;
+    }
+
+    .job-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .job-tech .tag {
+      background: #f0ede8;
+      color: var(--ink-soft);
+      border: 1px solid #c9c3bb;
+    }
+
+    .sidebar-section {
+      margin-bottom: 32px;
+    }
+
+    .sidebar-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar .section-label {
+      font-size: 9.5px;
+    }
+
+    .skill-row {
+      margin-bottom: 10px;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .skill-bar-bg {
+      height: 3px;
+      background: #d4cfc9;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: #c8401a;
+      border-radius: 2px;
+    }
+
+    .edu-entry {
+      margin-bottom: 16px;
+    }
+
+    .edu-degree {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .edu-school {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    .edu-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    /* Tags */
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--ink-soft);
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      padding: 3px 9px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
+    .highlight-box {
+      background: var(--accent-pale);
+      border-left: 3px solid #c8401a;
+      padding: 12px 14px;
+      border-radius: 0 4px 4px 0;
+      margin: 0 0 16px 0;
+    }
+
+    .highlight-box p {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .highlight-box strong {
+      color: #c8401a;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="1.jpeg" alt="Volodymyr Yevdokymov" class="header-photo">
+      <div class="header-left">
+        <h1>Volodymyr<br>Yevdokymov</h1>
+        <div class="title">Senior Full-Stack Developer</div>
+        <p class="summary">7 years of experience delivering solutions across diverse projects</p>
+      </div>
+      <div class="contact-block">
+        <div class="contact-item">
+          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+          </svg>
+          Ukraine
+        </div>
+        <div class="contact-item">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+          +380 95 591 3801
+        </div>
+        <div class="contact-item">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path
+              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+          miriladon@gmail.com
+        </div>
+        <div class="contact-item">
+          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57A1.46 1.46 0 0 1 14.38 12.11A1.46 1.46 0 0 1 15.84 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
+          </svg>
+          <a target="_blank" href="https://www.linkedin.com/in/volodymyr-y-94a178125"
+            style="color: #c8401a; text-decoration: underline;">Volodymyr Yevdokymov</a>
+        </div>
+      </div>
+    </header>
+
+
+     <!-- TODO:
+    винести освіту вниз
+    поміняти картинку
+    переробити тімлід секцію
+    стилі нормалізувати
+    респонсів
+    -->
+    <div class="body">
+
+      <main class="main">
+
+        <section>
+          <div class="section-label">Professional Experience</div>
+
+          <div class="job">
+            <div class="job-header">
+              <div class="job-title">Senior Software Developer</div>
+              <div class="job-period">Sep 2019 — Feb 2026</div>
+            </div>
+            <div class="job-company">AMC Bridge</div>
+            <ul class="job-bullets">
+              <li>Designed and implemented service architectures for B2B and B2C platforms</li>
+              <li>Built scalable backend systems using Python, Node.js, C#, and Go</li>
+              <li>Developed modern web applications with React + Redux; 3D rendering with Three.js</li>
+              <li>Led development teams of up to 5 members, delivering high-quality solutions under tight deadlines</li>
+              <li>Collaborated with international cross-functional teams across multiple countries</li>
+              <li>Designed scalable solutions that drove measurable revenue growth</li>
+              <li>Optimized complex architectures and refactored legacy code to improve performance and maintainability
+              </li>
+              <li>Rapidly adapted to new technologies and programming languages as project requirements evolved</li>
+            </ul>
+            <div class="job-tech">
+              <span class="job-tech-label">Languages:</span>
+              <div class="job-tech-tags">
+                <span class="tag">Python</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">C#</span>
+                <span class="tag">Go</span>
+              </div>
+            </div>
+            <div class="job-tech">
+              <span class="job-tech-label">Backend:</span>
+              <div class="job-tech-tags">
+                <span class="tag">Tornado</span>
+                <span class="tag">Google Cloud SDK</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Flask</span>
+                <span class="tag">Pytest</span>
+                <span class="tag">PyMongo</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Pydantic</span>
+                <span class="tag">SQLAlchemy</span>
+                <span class="tag">Nest.js</span>
+                <span class="tag">Mongoose</span>
+                <span class="tag">TypeORM</span>
+                <span class="tag">.NET 4.5 Web API</span>
+              </div>
+            </div>
+            <div class="job-tech">
+              <span class="job-tech-label">Frontend:</span>
+              <div class="job-tech-tags">
+                <span class="tag">React</span>
+                <span class="tag">Redux / Redux-Saga</span>
+                <span class="tag">Three.js</span>
+                <span class="tag">Jest</span>
+                <span class="tag">Cypress</span>
+                <span class="tag">Material-UI</span>
+                <span class="tag">RxJS</span>
+
+
+              </div>
+            </div>
+            <div class="job-tech">
+              <span class="job-tech-label">Databases:</span>
+              <div class="job-tech-tags">
+                <span class="tag">MongoDB</span>
+                <span class="tag">GCP Datastore</span>
+
+                <span class="tag">Redis</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">Microsoft SQL</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+            <div class="job-tech">
+              <span class="job-tech-label">DevOps & Cloud:</span>
+              <div class="job-tech-tags">
+                <span class="tag">GCP Pub/Sub</span>
+                <span class="tag">GCP Cloud Run</span>
+                <span class="tag">Kubernetes</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">CircleCI</span>
+                <span class="tag">Docker</span>
+                <span class="tag">GCP Secret Manager</span>
+
+                <span class="tag">GCP Monitoring</span>
+                <span class="tag">GCP Logging</span>
+
+                <span class="tag">GCP IAM</span>
+                <span class="tag">AWS (S3, Lambda)</span>
+                <span class="tag">Jenkins</span>
+              </div>
+            </div>
+            <div class="job-tech">
+              <span class="job-tech-label">Integrations & Tech:</span>
+              <div class="job-tech-tags">
+                <span class="tag">GitHub Copilot</span>
+                <span class="tag">Open API</span>
+                <span class="tag">Stripe</span>
+                <span class="tag">Electron</span>
+                <span class="tag">Google Maps API</span>
+                <span class="tag">Cesium API</span>
+                <span class="tag">Autodesk API</span>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="job">
+            <div class="job-header">
+              <div class="job-title">Junior Frontend Developer</div>
+              <div class="job-period">Jun 2019 — Sep 2019</div>
+            </div>
+            
+            <div class="job-company">Linkup Studio</div>
+            <ul class="job-bullets">
+              <li>Built frontend applications for internal and experimental projects using modern frameworks</li>
+              <li>Gained hands-on commercial experience with real-world IT business solutions</li>
+            </ul>
+            <div class="job-tech">
+              <span class="job-tech-label">Tech:</span>
+              <div class="job-tech-tags">
+                <span class="tag">React</span>
+                <span class="tag">Angular</span>
+                <span class="tag">JavaScript/TypeScript</span>
+                <span class="tag">Bootstrap</span>
+                <span class="tag">Jest</span>
+                <span class="tag">CSS</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <aside class="sidebar">
+
+        <div class="sidebar-section">
+          <div class="section-label">Core Skills</div>
+
+          <div class="skill-row">
+            <div class="skill-name"><span>Python WEB (Tornado, Flask, FastAPI)</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:90%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Backend TS/JS (Node.js, Nest.js)</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:85%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Frontend TS/JS (React)</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:85%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>NoSQL (MongoDB, GCP Datastore, Redis)</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:80%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>SQL (MySQL, MS SQL, PostgreSQL)</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:75%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>C# / .NET</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:70%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Go</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:65%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>C++</span></div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:55%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-label">Also Familiar</div>
+          <div class="tag-group">
+            <span class="tag">REST</span>
+            <span class="tag">Git</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">SCRUM</span>
+            <span class="tag">Kanban</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-label">Non-commercial experience</div>
+          <div class="tag-group">
+            <span class="tag">NumPy</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">Django</span>
+            <span class="tag">Conda</span>
+            <span class="tag">Azure</span>
+            <span class="tag">Google Gen AI SDK</span>
+            <span class="tag">OpenStreetMap API</span>
+          </div>
+        </div>
+
+
+        <div class="sidebar-section">
+          <div class="section-label">Education</div>
+
+          <div class="edu-entry">
+            <div class="edu-degree">B.Sc. Software Engineering</div>
+            <div class="edu-school">Lviv Polytechnic National University</div>
+            <div class="edu-year">2016 – 2020</div>
+          </div>
+
+          <div class="edu-entry">
+            <div class="edu-degree">Junior Specialist, Information Technologies</div>
+            <div class="edu-school">Dnipro Lyceum of Information Technologies</div>
+            <div class="edu-year">2013 – 2016</div>
+          </div>
+        </div>
+
+
+        <div class="highlight-box">
+          <p><strong>Team Lead</strong> with experience managing teams of up to 5 developers. Comfortable owning the
+            full lifecycle from architecture design to production delivery.</p>
+        </div>
+
+
+      </aside>
+    </div>
+
+  </div>
+</body>
+
+</html>
