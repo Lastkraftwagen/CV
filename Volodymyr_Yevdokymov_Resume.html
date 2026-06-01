@@ -57,7 +57,7 @@
       display: grid;
       grid-template-columns: auto 1fr auto;
       gap: 32px;
-      padding: 52px 56px 40px;
+      padding: 40px 56px 40px;
       border-bottom: 1px solid #d4cfc9;
       position: relative;
     }
@@ -71,16 +71,6 @@
       border: 3px solid #d4cfc9;
       align-self: center;
       flex-shrink: 0;
-    }
-
-    .header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: #c8401a;
     }
 
     .header-left h1 {
@@ -271,30 +261,29 @@
       font-size: 9.5px;
     }
 
-    .skill-row {
-      margin-bottom: 10px;
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
     }
 
-    .skill-name {
-      display: flex;
-      justify-content: space-between;
+    .skill-list li {
       font-size: 12.5px;
       color: var(--ink-soft);
-      margin-bottom: 4px;
       font-weight: 500;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.4;
     }
 
-    .skill-bar-bg {
-      height: 3px;
-      background: #d4cfc9;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: #c8401a;
-      border-radius: 2px;
+    .skill-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #c8401a;
+      font-size: 11px;
+      top: 1px;
     }
 
     .edu-entry {
@@ -434,14 +423,9 @@
         font-size: 16px;
       }
 
-      .sidebar-section:has(.skill-row) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+      .sidebar-section:has(.skill-list) .skill-list {
+        columns: 2;
         column-gap: 16px;
-      }
-
-      .sidebar-section:has(.skill-row) .section-label {
-        grid-column: 1 / -1;
       }
     }
   </style>
@@ -454,7 +438,7 @@
       <div class="header-left">
         <h1>Volodymyr<br>Yevdokymov</h1>
         <div class="title">Senior Full-Stack Developer</div>
-        <p class="summary">7 years of experience delivering solutions across diverse projects</p>
+        <p class="summary">Full-stack engineer specializing in Python & Node.js backends, React frontends, and cloud-native delivery.</p>
       </div>
       <div class="contact-block">
         <div class="contact-item">
@@ -490,22 +474,18 @@
     </header>
 
 
-     <!-- TODO:
-    винести освіту вниз
+    <!-- TODO:
     поміняти картинку
-    переробити тімлід секцію
     -->
     <div class="body">
 
       <main class="main">
 
         <section>
-          <div class="section-label">Professional Experience</div>
-
           <div class="job">
             <div class="job-header">
               <div class="job-title">Senior Software Developer</div>
-              <div class="job-period">Sep 2019 — Feb 2026</div>
+              <div class="job-period">Sep 2019 — Feb 2026 (6 years 6 months)</div>
             </div>
             <div class="job-company">AMC Bridge</div>
             <ul class="job-bullets">
@@ -536,11 +516,9 @@
                 <span class="tag">Google Cloud SDK</span>
                 <span class="tag">Node.js</span>
                 <span class="tag">Flask</span>
+                <span class="tag">FastAPI</span>
                 <span class="tag">Pytest</span>
                 <span class="tag">PyMongo</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">Pydantic</span>
-                <span class="tag">SQLAlchemy</span>
                 <span class="tag">Nest.js</span>
                 <span class="tag">Mongoose</span>
                 <span class="tag">TypeORM</span>
@@ -583,11 +561,7 @@
                 <span class="tag">CircleCI</span>
                 <span class="tag">Docker</span>
                 <span class="tag">GCP Secret Manager</span>
-
-                <span class="tag">GCP Monitoring</span>
                 <span class="tag">GCP Logging</span>
-
-                <span class="tag">GCP IAM</span>
                 <span class="tag">AWS (S3, Lambda)</span>
                 <span class="tag">Jenkins</span>
               </div>
@@ -610,9 +584,9 @@
           <div class="job">
             <div class="job-header">
               <div class="job-title">Junior Frontend Developer</div>
-              <div class="job-period">Jun 2019 — Sep 2019</div>
+              <div class="job-period">Jun 2019 — Sep 2019 (3 months)</div>
             </div>
-            
+
             <div class="job-company">Linkup Studio</div>
             <ul class="job-bullets">
               <li>Built frontend applications for internal and experimental projects using modern frameworks</li>
@@ -630,67 +604,63 @@
               </div>
             </div>
           </div>
+
         </section>
 
       </main>
 
       <aside class="sidebar">
 
+        <div class="highlight-box">
+          <p><strong>Team Lead</strong> with experience managing teams of up to 5 developers. Comfortable owning the
+            full lifecycle from architecture design to production delivery.</p>
+        </div>
+
         <div class="sidebar-section">
           <div class="section-label">Core Skills</div>
 
-          <div class="skill-row">
-            <div class="skill-name"><span>Python WEB (Tornado, Flask, FastAPI)</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:90%"></div>
-            </div>
+          <ul class="skill-list">
+            <li>Python WEB (Tornado, Flask, FastAPI)</li>
+            <li>Backend TS/JS (Node.js, Nest.js)</li>
+            <li>Frontend TS/JS (React)</li>
+            <li>NoSQL (MongoDB, GCP Datastore, Redis)</li>
+            <li>SQL (MySQL, MS SQL, PostgreSQL)</li>
+            <li>C# / .NET</li>
+            <li>Go</li>
+            <li>C++</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-label">Languages</div>
+          <ul class="skill-list">
+            <li><b>Ukrainian</b> Native</li>
+            <li><b>English</b> C1</li>
+            <li><b>German</b> B1</li>
+          </ul>
+        </div>
+
+
+
+
+        <div class="sidebar-section">
+          <div class="section-label">Education</div>
+
+          <div class="edu-entry">
+            <div class="edu-degree"><b>Bachelor's degree</b> in Software Engineering</div>
+            <div class="edu-school">Lviv Polytechnic National University</div>
+            <div class="edu-year">2016 – 2020</div>
           </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>Backend TS/JS (Node.js, Nest.js)</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:85%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>Frontend TS/JS (React)</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:85%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>NoSQL (MongoDB, GCP Datastore, Redis)</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:80%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>SQL (MySQL, MS SQL, PostgreSQL)</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:75%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>C# / .NET</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:70%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>Go</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:65%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-name"><span>C++</span></div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="width:55%"></div>
-            </div>
+
+          <div class="edu-entry">
+            <div class="edu-degree">Junior Specialist, Information Technologies</div>
+            <div class="edu-school">Dnipro Lyceum of Information Technologies</div>
+            <div class="edu-year">2013 – 2016</div>
           </div>
         </div>
 
         <div class="sidebar-section">
-          <div class="section-label">Also Familiar</div>
+          <div class="section-label">Tools & Methodologies</div>
           <div class="tag-group">
             <span class="tag">REST</span>
             <span class="tag">Git</span>
@@ -712,30 +682,8 @@
             <span class="tag">Azure</span>
             <span class="tag">Google Gen AI SDK</span>
             <span class="tag">OpenStreetMap API</span>
+            <span class="tag">SQLAlchemy</span>
           </div>
-        </div>
-
-
-        <div class="sidebar-section">
-          <div class="section-label">Education</div>
-
-          <div class="edu-entry">
-            <div class="edu-degree">B.Sc. Software Engineering</div>
-            <div class="edu-school">Lviv Polytechnic National University</div>
-            <div class="edu-year">2016 – 2020</div>
-          </div>
-
-          <div class="edu-entry">
-            <div class="edu-degree">Junior Specialist, Information Technologies</div>
-            <div class="edu-school">Dnipro Lyceum of Information Technologies</div>
-            <div class="edu-year">2013 – 2016</div>
-          </div>
-        </div>
-
-
-        <div class="highlight-box">
-          <p><strong>Team Lead</strong> with experience managing teams of up to 5 developers. Comfortable owning the
-            full lifecycle from architecture design to production delivery.</p>
         </div>
 
 
